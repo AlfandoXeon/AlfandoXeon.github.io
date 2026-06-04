@@ -1,0 +1,62 @@
+{
+  "profile": {
+    "nama": "Grateo Alfando Atmojo",
+    "panggilan": "Tyo",
+    "tanggal_lahir": "7 Mei 2005",
+    "jurusan": "Teknik Informatika",
+    "sub_jurusan": "IT Network",
+    "kelamin": "Laki-Laki",
+    "nama_panggung": "AlfandoXeon",
+    "hobi": [
+      "Mobile Legends",
+      "Musik (Piano, Gitar)",
+      "Mendengarkan Musik",
+      "Membaca Buku",
+      "Nonton Anime"
+    ],
+    "kemampuan": [
+      "Coding (Python, JavaScript, HTML, CSS, PHP, C, C++)",
+      "Editing Video & Photo (Capcut, Premiere, Photoshop)",
+      "IT Support (Jaringan & WiFi)",
+      "Dan masih banyak lainnya..."
+    ],
+    "kontak": {
+      "whatsapp": "085764175824",
+      "instagram": "grteo_alfndd21"
+    },
+    "foto_profil": "photos/Hcker2.jpg",
+    "foto_placeholder": "assets/images/profile-placeholder.jpg"
+  },
+  "skills": [
+    { "nama": "Python", "level": 90, "kategori": "Backend" },
+    { "nama": "JavaScript (Node.js)", "level": 85, "kategori": "Backend" },
+    { "nama": "HTML & CSS", "level": 95, "kategori": "Frontend" },
+    { "nama": "PHP", "level": 80, "kategori": "Backend" },
+    { "nama": "C / C++", "level": 75, "kategori": "System" },
+    { "nama": "IT Networking", "level": 88, "kategori": "Infrastructure" },
+    { "nama": "Video Editing", "level": 82, "kategori": "Creative" },
+    { "nama": "Photo Editing", "level": 78, "kategori": "Creative" }
+  ],
+  "social_links": [
+    { "platform": "WhatsApp", "url": "https://wa.me/6285764175824", "icon": "whatsapp" },
+    { "platform": "Instagram", "url": "https://instagram.com/grteo_alfndd21", "icon": "instagram" },
+    { "platform": "GitHub", "url": "https://github.com/AlfandoXeon", "icon": "github" },
+    { "platform": "LinkedIn", "url": "https://linkedin.com/", "icon": "linkedin" }
+  ],
+  "youtube_channel": "https://youtube.com/@nazo_thx?si=QpCAbDNNPc_wpB46",
+  "portfolio_site": {
+    "title": "Portofolio Editing & Konten Kreator MLBB",
+    "description": "Kunjungi situs portofolio editing dan konten kreator Mobile Legends saya untuk melihat karya serta konten terbaru.",
+    "button_text": "Lihat Portofolio",
+    "url": "https://nazothx21.github.io"
+  },
+  "theme": {
+    "primary_color": "#ff1a1a",
+    "secondary_color": "#cc0000",
+    "background_dark": "#0a0a0a",
+    "background_card": "#1a1a1a",
+    "text_primary": "#ffffff",
+    "text_secondary": "#b3b3b3",
+    "accent_glow": "rgba(255, 26, 26, 0.3)"
+  }
+}

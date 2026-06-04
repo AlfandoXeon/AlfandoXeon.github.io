@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlfandoXeon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="photos/icon.png">
+
+</head>
+<body>
+    <!-- Canvas Background -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">AlfandoXeon</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#hero" class="nav-link active" data-section="hero">Beranda</a>
+                <a href="#about" class="nav-link" data-section="about">Tentang</a>
+                <a href="#skills" class="nav-link" data-section="skills">Keahlian</a>
+                <a href="#youtube" class="nav-link" data-section="youtube">YouTube</a>
+                <a href="#portfolio" class="nav-link" data-section="portfolio">Portfolio</a>
+                <a href="#contact" class="nav-link" data-section="contact">Kontak</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                <span class="badge-text">Tersedia untuk Proyek</span>
+            </div>
+            <h1 class="hero-title">
+                <span class="hero-greeting">Halo, saya</span>
+                <span class="hero-name" id="hero-name"></span>
+                <span class="hero-cursor">|</span>
+            </h1>
+            <p class="hero-subtitle" id="hero-subtitle">Memuat data...</p>
+            <div class="hero-cta">
+                <a href="#about" class="btn btn-primary">
+                    <span class="btn-text">Jelajahi</span>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
+                </a>
+                <a href="#contact" class="btn btn-outline">
+                    <span class="btn-text">Hubungi Saya</span>
+                </a>
+            </div>
+            <div class="hero-scroll">
+                <div class="scroll-mouse">
+                    <div class="scroll-wheel"></div>
+                </div>
+                <span class="scroll-text">Scroll ke bawah</span>
+            </div>
+        </div>
+        <div class="hero-decoration">
+            <div class="deco-circle deco-1"></div>
+            <div class="deco-circle deco-2"></div>
+            <div class="deco-line"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-number">01</span>
+                <h2 class="section-title">Tentang Saya</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="about-grid">
+                <div class="about-image-wrapper">
+                    <div class="about-image-frame">
+                        <div class="about-image" id="about-image">
+                            <!-- Placeholder Profile Image with SVG -->
+                            <svg viewBox="0 0 400 400" class="profile-svg" id="profile-svg">
+                                <defs>
+                                    <linearGradient id="profileGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#ff1a1a;stop-opacity:0.2"/>
+                                        <stop offset="100%" style="stop-color:#cc0000;stop-opacity:0.1"/>
+                                    </linearGradient>
+                                    <filter id="glow">
+                                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                        <feMerge>
+                                            <feMergeNode in="coloredBlur"/>
+                                            <feMergeNode in="SourceGraphic"/>
+                                        </feMerge>
+                                    </filter>
+                                </defs>
+                                <rect width="400" height="400" fill="url(#profileGrad)" rx="20"/>
+                                <circle cx="200" cy="160" r="60" fill="#ff1a1a" opacity="0.3"/>
+                                <circle cx="200" cy="160" r="50" fill="#ff1a1a" opacity="0.5"/>
+                                <path d="M200 100 C 170 100, 150 130, 150 160 C 150 190, 170 210, 200 210 C 230 210, 250 190, 250 160 C 250 130, 230 100, 200 100" fill="#ff1a1a" opacity="0.7"/>
+                                <path d="M140 280 Q 200 220 260 280 L 260 400 L 140 400 Z" fill="#ff1a1a" opacity="0.4"/>
+                                <text x="200" y="360" text-anchor="middle" fill="#ff1a1a" font-family="JetBrains Mono" font-size="14" font-weight="600" opacity="0.6">ALFANDOXEON</text>
+                            </svg>
+                        </div>
+                        <div class="image-border"></div>
+                        <div class="image-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-content">
+                    <div class="about-card">
+                        <div class="card-header">
+                            <div class="card-dots">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                            </div>
+                            <span class="card-title">profile.json</span>
+                        </div>
+                        <div class="card-body" id="about-info">
+                            <!-- Data akan diisi oleh JS -->
+                        </div>
+                    </div>
+                    <div class="about-hobbies" id="about-hobbies">
+                        <!-- Data akan diisi oleh JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-number">02</span>
+                <h2 class="section-title">Keahlian</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="skills-grid" id="skills-grid">
+                <!-- Skills akan diisi oleh JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Terminal Section -->
+    <section id="terminal" class="terminal-section">
+        <div class="terminal-header">
+            <div>
+                <span class="terminal-index">[02]</span>
+                <h2 class="terminal-title">SYSTEM_TERMINAL.EXE</h2>
+            </div>
+            <span class="terminal-status">READY_TO_COMMAND_</span>
+        </div>
+
+        <div class="terminal-window">
+            <div class="terminal-topbar">
+                <div class="terminal-topbar-left">
+                    <span class="terminal-dot terminal-dot-red"></span>
+                    <span class="terminal-dot terminal-dot-gray"></span>
+                    <span class="terminal-dot terminal-dot-dark"></span>
+                    <span class="terminal-path">alfandoxeon@cybernet:~</span>
+                </div>
+                <div class="terminal-version">BASH v5.2.15</div>
+            </div>
+
+            <div class="terminal-screen" id="terminal-screen">
+                <div class="terminal-line terminal-line-muted">System initialization complete...</div>
+                <div class="terminal-line terminal-line-muted">Loading user profile: <span class="terminal-highlight">AlfandoXeon</span></div>
+                <div class="terminal-line terminal-line-success">[OK] Connection secured via SecureTunnel v3.1</div>
+                <div class="terminal-line terminal-line-warning">Selamat datang di Terminal Portofolio Tyo.</div>
+                <div class="terminal-line terminal-line-muted">Ketik <span class="terminal-highlight terminal-highlight-action">help</span> untuk melihat daftar instruksi yang tersedia atau klik rekomendasi di bawah.</div>
+            </div>
+
+            <div class="terminal-input-area">
+                <span class="terminal-prompt">tyo@xeon-net:~$</span>
+                <input type="text" id="terminal-input" placeholder="Masukkan perintah disini..." class="terminal-input" autocomplete="off">
+            </div>
+        </div>
+
+        <div class="terminal-shortcuts">
+            <span class="shortcut-label">Pintas:</span>
+            <button type="button" class="terminal-button" onclick="executeCommand('profil')">profil</button>
+            <button type="button" class="terminal-button" onclick="executeCommand('keahlian')">keahlian</button>
+            <button type="button" class="terminal-button" onclick="executeCommand('hobi')">hobi</button>
+            <button type="button" class="terminal-button" onclick="executeCommand('kontak')">kontak</button>
+            <button type="button" class="terminal-button terminal-button-muted" onclick="executeCommand('clear')">bersihkan</button>
+        </div>
+    </section>
+
+    <!-- YouTube Section -->
+    <section id="youtube" class="youtube">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-number">03</span>
+                <h2 class="section-title">YouTube</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="youtube-grid">
+                <div class="youtube-card">
+                    <div class="youtube-info">
+                        <h3>Channel YouTube</h3>
+                        <p>Tonton video terbaru saya langsung di channel YouTube. Konten berfokus pada mobile legend.</p>
+                        <a id="youtube-link" class="btn btn-secondary" href="#" target="_blank" rel="noopener noreferrer">Kunjungi Channel</a>
+                    </div>
+                    <div id="youtube-embed" class="youtube-embed"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-number">04</span>
+                <h2 class="section-title">Portofolio</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="portfolio-card">
+                <div class="portfolio-info">
+                    <h3 id="portfolio-title">Portofolio Editing & Konten Kreator MLBB</h3>
+                    <p id="portfolio-description">Kunjungi situs portofolio editing dan konten kreator Mobile Legends saya untuk melihat karya serta konten terbaru.</p>
+                    <a id="portfolio-link" class="btn btn-primary" href="#" target="_blank" rel="noopener noreferrer">Lihat Portofolio</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-number">05</span>
+                <h2 class="section-title">Kontak</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info" id="contact-info">
+                    <!-- Data akan diisi oleh JS -->
+                </div>
+                <div class="contact-form-wrapper">
+                    <div class="contact-card">
+                        <div class="card-header">
+                            <div class="card-dots">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                            </div>
+                            <span class="card-title">kirim_pesan.js</span>
+                        </div>
+                        <form class="contact-form" id="contact-form">
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <span class="label-icon">&gt;</span>
+                                    <span>nama</span>
+                                </label>
+                                <input type="text" class="form-input" placeholder="Masukkan nama Anda" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <span class="label-icon">&gt;</span>
+                                    <span>email</span>
+                                </label>
+                                <input type="email" class="form-input" placeholder="Masukkan email Anda" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <span class="label-icon">&gt;</span>
+                                    <span>pesan</span>
+                                </label>
+                                <textarea class="form-textarea" rows="4" placeholder="Tulis pesan Anda..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-full">
+                                <span class="btn-text">Kirim Pesan</span>
+                                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">AlfandoXeon</span>
+                <span class="logo-bracket">/&gt;</span>
+            </div>
+            <!-- <p class="footer-text">Dibuat dengan <span class="heart">❤</span> oleh AlfandoXeon</p> -->
+            <p class="footer-copy">&copy; 2026 All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            <span class="toast-message">Pesan berhasil dikirim!</span>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
