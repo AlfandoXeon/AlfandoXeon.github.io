@@ -476,6 +476,8 @@ function renderPromo() {
     if (promoButton) {
         promoButton.textContent = promo.button_text || promoButton.textContent;
         promoButton.href = promo.link || promoButton.href;
+        promoButton.target = '_blank';
+        promoButton.rel = 'noopener noreferrer';
     }
 }
 
@@ -911,7 +913,7 @@ function initEntryPopup() {
     if (ctaButton) {
         ctaButton.addEventListener('click', () => {
             const targetLink = popupConfig.link || 'Dana/index.html';
-            window.location.href = targetLink;
+            window.open(targetLink, '_blank', 'noopener,noreferrer');
         });
     }
 
