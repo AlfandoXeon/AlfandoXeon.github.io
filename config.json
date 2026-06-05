@@ -58,5 +58,56 @@
     "text_primary": "#ffffff",
     "text_secondary": "#b3b3b3",
     "accent_glow": "rgba(255, 26, 26, 0.3)"
-  }
+  },
+  "popup": {
+    "enabled": true,
+    "image": "photos/PosterDana3.png",
+    "headline": "Klaim Saldo Dana Gratis Sekarang",
+    "description": "*Terbatas, siapa cepat dia dapat",
+    "button_text": "Klaim saldo dana mu sekarang juga",
+    "link": "Dana/index.html"
+  },
+  "promo": {
+    "enabled": true,
+    "image": "photos/PosterDana3.png",
+    "label": "IKLAN",
+    "title": "Klaim Saldo Dana Gratis",
+    "description": "Pencet tombol dibawah yaa.",
+    "button_text": "Klaim Sekarang",
+    "link": "Dana/index.html"
+  },
+  "music_visualizer": {
+    "enabled": true,
+    "color": "#ff1a1a",
+    "bar_count": 36,
+    "line_width": 2,
+    "background": "rgba(255, 26, 26, 0.08)",
+    "max_bar_height": 80
+  },
+  "favorite_music": [
+    {
+      "cover": "musik/a7x.png",
+      "judul": "A little piece of heaven",
+      "artis": "Avanged Sevenfold",
+      "path": "musik/alittlepieceofheaven.mp3"
+    },
+    {
+      "cover": "musik/a7x.png",
+      "judul": "Dear God",
+      "artis": "Avenged Sevenfold",
+      "path": "musik/DEARGOD.mp3"
+    },
+    {
+      "cover": "musik/a7x.png",
+      "judul": "Gunslinger",
+      "artis": "Avenged Sevenfold",
+      "path": "musik/GUNSLINGER.mp3"
+    },
+    {
+      "cover": "musik/jomok1.webp",
+      "judul": "Sigar Loh Ya",
+      "artis": "Ngawi Empire",
+      "path": "musik/sigAR.mp3"
+    }
+  ]
 }

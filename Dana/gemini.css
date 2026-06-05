@@ -1,0 +1,57 @@
+:root {
+    --primary-color: #118eea; /* Biru DANA */
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #0d79c7;
+    transform: translateY(-3px);
+}
+
+.header-card {
+    border-top: 5px solid var(--primary-color);
+}
+
+/* Animasi Logo Bergulir */
+.logo-wrapper {
+    width: 100%;
+    white-space: nowrap;
+}
+
+.logo-track {
+    display: flex;
+    width: fit-content;
+    animation: scroll 15s linear infinite;
+}
+
+.logo-track img {
+    height: 40px;
+    margin: 0 50px;
+    filter: grayscale(20%);
+    opacity: 0.8;
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Responsive Customization */
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(17, 142, 234, 0.25);
+}

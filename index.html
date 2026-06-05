@@ -15,6 +15,35 @@
     <!-- Canvas Background -->
     <canvas id="particle-canvas"></canvas>
 
+    <div class="entry-popup-overlay" id="entry-popup" aria-hidden="true">
+        <div class="entry-popup-card">
+            <div class="entry-popup-header">
+                <div>
+                    <span class="entry-popup-badge">KESEMPATAN TERBATAS</span>
+                    <h2 class="entry-popup-title" id="entry-popup-title">Klaim Saldo Dana Gratis Sekarang</h2>
+                </div>
+                <div class="entry-popup-icon" aria-hidden="true">
+                    <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="40" cy="40" r="36" stroke="rgba(255,26,26,0.24)" stroke-width="8"/>
+                        <path d="M28 42L36 50L52 34" stroke="#ff1a1a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M40 20V28" stroke="#ff1a1a" stroke-width="5" stroke-linecap="round"/>
+                        <path d="M40 52V60" stroke="#ff1a1a" stroke-width="5" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="entry-popup-visual">
+                <img id="entry-popup-image" src="photos/PosterSaldoDana.png" alt="Poster Klaim Saldo Dana" class="entry-popup-poster">
+            </div>
+            <p class="entry-popup-copy" id="entry-popup-copy">Selamat datang di AlfandoXeon. Tunggu dulu! Sebelum menjelajah, dapatkan kesempatan klaim saldo Dana di halaman resmi program kami.</p>
+            <div class="entry-popup-actions">
+                <button type="button" class="btn-popup-primary entry-popup-cta" id="entry-popup-button">Klaim saldo dana mu sekarang juga</button>
+                <button type="button" class="entry-popup-close" data-popup-close>Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="blur-target" id="blur-target">
+
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
@@ -26,6 +55,7 @@
             <div class="nav-menu" id="nav-menu">
                 <a href="#hero" class="nav-link active" data-section="hero">Beranda</a>
                 <a href="#about" class="nav-link" data-section="about">Tentang</a>
+                <a href="#music" class="nav-link" data-section="music">Musik</a>
                 <a href="#skills" class="nav-link" data-section="skills">Keahlian</a>
                 <a href="#youtube" class="nav-link" data-section="youtube">YouTube</a>
                 <a href="#portfolio" class="nav-link" data-section="portfolio">Portfolio</a>
@@ -140,11 +170,68 @@
         </div>
     </section>
 
+    <!-- Music Section -->
+    <section id="music" class="music">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-number">02</span>
+                <h2 class="section-title">Musik Favorit Saya</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="music-grid">
+                <div class="music-player-card">
+                    <div class="music-player-top">
+                        <h3 class="music-player-title">Pemutar Musik</h3>
+                        <p class="music-player-subtitle">Pilih lagu favorit dan dengarkan langsung.</p>
+                    </div>
+                    <div class="music-meta-volume-row">
+                        <div class="music-player-meta">
+                            <img id="music-cover" src="photos/cover-music-1.jpg" alt="Cover Musik" class="music-cover">
+                            <div class="music-meta-text">
+                                <span class="music-label">Sedang Diputar</span>
+                                <h3 id="music-title" class="music-now-title">Pilih lagu...</h3>
+                                <p id="music-artist" class="music-now-artist">Artis akan tampil di sini</p>
+                            </div>
+                        </div>
+                        <div class="music-volume-control">
+                            <span class="music-volume-label">Volume</span>
+                            <div class="volume-slider-vertical-wrapper">
+                                <input type="range" id="music-volume" min="0" max="100" value="80">
+                            </div>
+                            <span id="music-volume-value">80%</span>
+                        </div>
+                    </div>
+                    <div class="music-controls">
+                        <button type="button" class="music-button" id="music-prev" aria-label="Lagu sebelumnya">⟨</button>
+                        <button type="button" class="music-button music-button-main" id="music-toggle" aria-label="Putar / Jeda">Play</button>
+                        <button type="button" class="music-button" id="music-next" aria-label="Lagu selanjutnya">⟩</button>
+                    </div>
+                    <div class="music-visualizer-wrapper" id="music-visualizer-wrapper">
+                        <canvas id="music-spectrum"></canvas>
+                    </div>
+                    <div class="music-progress-container" id="music-progress-container">
+                        <div class="music-progress-bar">
+                            <div class="music-progress" id="music-progress"></div>
+                        </div>
+                        <div class="music-time">
+                            <span id="music-current-time">00:00</span>
+                            <span id="music-duration">00:00</span>
+                        </div>
+                    </div>
+                    <audio id="audio-player"></audio>
+                </div>
+                <div class="music-playlist" id="music-playlist">
+                    <!-- Playlist akan dibuat oleh JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Skills Section -->
     <section id="skills" class="skills">
         <div class="section-container">
             <div class="section-header">
-                <span class="section-number">02</span>
+                <span class="section-number">03</span>
                 <h2 class="section-title">Keahlian</h2>
                 <div class="section-line"></div>
             </div>
@@ -203,7 +290,7 @@
     <section id="youtube" class="youtube">
         <div class="section-container">
             <div class="section-header">
-                <span class="section-number">03</span>
+                <span class="section-number">04</span>
                 <h2 class="section-title">YouTube</h2>
                 <div class="section-line"></div>
             </div>
@@ -224,7 +311,7 @@
     <section id="portfolio" class="portfolio">
         <div class="section-container">
             <div class="section-header">
-                <span class="section-number">04</span>
+                <span class="section-number">05</span>
                 <h2 class="section-title">Portofolio</h2>
                 <div class="section-line"></div>
             </div>
@@ -242,7 +329,7 @@
     <section id="contact" class="contact">
         <div class="section-container">
             <div class="section-header">
-                <span class="section-number">05</span>
+                <span class="section-number">06</span>
                 <h2 class="section-title">Kontak</h2>
                 <div class="section-line"></div>
             </div>
@@ -295,6 +382,23 @@
         </div>
     </section>
 
+    <!-- Promo Section -->
+    <section id="promo" class="promo">
+        <div class="section-container">
+            <div class="promo-card">
+                <div class="promo-media">
+                    <img id="promo-image" src="photos/PosterDana3.png" alt="Poster Klaim Saldo Dana" class="promo-image">
+                </div>
+                <div class="promo-copy">
+                    <p class="promo-label" id="promo-label">Promo Terbaru</p>
+                    <h3 class="promo-title" id="promo-title">Klaim Saldo Dana Gratis</h3>
+                    <p class="promo-description" id="promo-description">Arahkan ke halaman resmi bagi-bagi dana AlfandoXeon langsung sekarang juga.</p>
+                    <a href="Dana/index.html" class="btn btn-primary promo-button" id="promo-button">Klaim Sekarang</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
@@ -319,6 +423,7 @@
         </div>
     </div>
 
+    </div>
     <script src="app.js"></script>
 </body>
 </html>

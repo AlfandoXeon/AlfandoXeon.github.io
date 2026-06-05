@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bagi-Bagi Saldo Dana</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-inner">
+            <div class="brand-wrap">
+                <span class="brand-logo">&lt;AX&gt;</span>
+                <div>
+                    <h1>AlfandoXeon Dana</h1>
+                    <p>Transfer Saldo Dana</p>
+                </div>
+            </div>
+            <div class="nav-badge">LIVE</div>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="container hero-grid">
+            <div class="hero-copy">
+                <span class="eyebrow">Dana Gratis & Transfer</span>
+                <h2>Salurkan bantuan saldo Dana dengan cepat dan aman.</h2>
+                <p>Isi data dengan benar agar proses verifikasi melalui WhatsApp berjalan lancar. Hanya untuk pengguna Indonesia.</p>
+                <div class="hero-stats">
+                    <div>
+                        <span>+3</span>
+                        <p>Penerima Terdaftar</p>
+                    </div>
+                    <div>
+                        <span>1/7</span>
+                        <p>Dukungan Via WA</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-card">
+                <div class="card-header">
+                    <span>FORM PENGIRIMAN</span>
+                    <span class="card-status">Terpercaya</span>
+                </div>
+                <div class="bank-card">
+                    <div class="bank-logo">DANA</div>
+                    <div class="bank-amount">Rp 5.000</div>
+                    <div class="bank-meta">PT. Manuver Indonesia Sejahtera</div>
+                </div>
+                <div class="form-panel">
+                    <label for="nomorDana">Nomor Dana</label>
+                    <input type="number" placeholder="Masukkan nomor Dana" id="nomorDana" required>
+                    <label for="namaKamu">Nama Pemilik</label>
+                    <input type="text" placeholder="Nama kamu" id="namaKamu" required>
+                    <button class="btn-primary" onclick="bukaWhatsapp()">Kirim Sekarang</button>
+                </div>
+                <div class="form-note">
+                    Pastikan nomor Dana dan nama sesuai dengan data asli kamu. Setelah diklik, kamu akan diarahkan ke WhatsApp untuk konfirmasi.
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container main-grid">
+        <section class="status-card">
+            <div class="status-header">
+                <h3>Status Pembayaran</h3>
+                <span>Tergantung</span>
+            </div>
+            <ul class="status-list">
+                <li>
+                    <strong>Proses:</strong> Verifikasi data dan persiapan transfer.
+                </li>
+                <li>
+                    <strong>Metode:</strong> Dana / GoPay / BRI.
+                </li>
+                <li>
+                    <strong>Keamanan:</strong> Hanya data resmi yang diproses.
+                </li>
+
+            </ul>
+        </section>
+
+        <section class="winner-card">
+            <div class="winner-header">
+                <h3>Daftar Pemenang</h3>
+                <p>Update Terbaru.</p>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Dino</td>
+                            <td>Terverifikasi</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Rizky</td>
+                            <td>Dalam Proses</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Alya</td>
+                            <td>Terima</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <section class="scrollLogo">
+        <div class="logo-wrap">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/1280px-Logo_dana_blue.svg.png" alt="Logo Dana">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/1280px-Gopay_logo.svg.png" alt="Logo Gopay">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/BANK_BRI_logo.svg/960px-BANK_BRI_logo.svg.png" alt="Logo BRI">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/1280px-Logo_dana_blue.svg.png" alt="Logo Dana">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/1280px-Gopay_logo.svg.png" alt="Logo Gopay">
+        </div>
+    </section>
+
+    <footer class="page-footer">
+        <div class="container footer-inner">
+            <p>Web ini dibangun dan dikembangkan oleh Nazo Dev 2026 (dulu AlfandoXeon Dev).</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

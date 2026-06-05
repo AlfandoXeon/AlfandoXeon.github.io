@@ -14,6 +14,7 @@ async function loadConfig() {
         if (!response.ok) throw new Error('Gagal memuat config.json');
         configData = await response.json();
         renderAll();
+        initEntryPopup();
     } catch (error) {
         console.error('Error loading config:', error);
         document.getElementById('hero-subtitle').textContent = 'Error memuat data. Pastikan config.json tersedia.';
@@ -29,10 +30,12 @@ function renderAll() {
 
     renderHero();
     renderAbout();
+    renderMusic();
     renderSkills();
     renderYoutube();
     renderPortfolio();
     renderContact();
+    renderPromo();
     startTypingEffect();
 
     // Observe dynamically added reveal elements (skills cards)
@@ -163,6 +166,243 @@ function renderSkills() {
     }).join('');
 }
 
+function renderMusic() {
+    const tracks = configData.favorite_music || [];
+    const playlist = document.getElementById('music-playlist');
+    const coverImg = document.getElementById('music-cover');
+    const titleEl = document.getElementById('music-title');
+    const artistEl = document.getElementById('music-artist');
+
+    if (!playlist) return;
+
+    if (tracks.length === 0) {
+        playlist.innerHTML = `
+            <div class="music-empty">
+                Tidak ada lagu favorit. Tambahkan lagu di <code>config.json</code> pada properti <code>favorite_music</code>.
+            </div>
+        `;
+        return;
+    }
+
+    playlist.innerHTML = tracks.map((track, index) => {
+        const fileName = track.path ? track.path.split('/').pop() : 'file.mp3';
+        return `
+            <button type="button" class="music-track-item" data-track-index="${index}">
+                <div>
+                    <p class="track-title">${track.judul}</p>
+                    <p class="track-artist">${track.artis}</p>
+                </div>
+                <span class="track-file">${fileName}</span>
+            </button>
+        `;
+    }).join('');
+
+    setupMusicPlayer(tracks, coverImg, titleEl, artistEl);
+}
+
+function setupMusicPlayer(tracks, coverImg, titleEl, artistEl) {
+    const audio = document.getElementById('audio-player');
+    const nextBtn = document.getElementById('music-next');
+    const prevBtn = document.getElementById('music-prev');
+    const toggleBtn = document.getElementById('music-toggle');
+    const progressFill = document.getElementById('music-progress');
+    const currentTimeEl = document.getElementById('music-current-time');
+    const durationEl = document.getElementById('music-duration');
+    const playlistItems = document.querySelectorAll('.music-track-item');
+    const progressBar = document.querySelector('.music-progress-bar');
+    const volumeSlider = document.getElementById('music-volume');
+    const volumeValue = document.getElementById('music-volume-value');
+    const spectrumCanvas = document.getElementById('music-spectrum');
+    const spectrumCtx = spectrumCanvas ? spectrumCanvas.getContext('2d') : null;
+    const visualizerConfig = configData.music_visualizer || {};
+
+    let currentTrackIndex = 0;
+    let isPlaying = false;
+    let audioContext = null;
+    let analyser = null;
+    let frequencyData = null;
+    let visualizerAnimation = null;
+
+    function resizeSpectrumCanvas() {
+        if (!spectrumCanvas) return;
+        spectrumCanvas.width = spectrumCanvas.clientWidth;
+        spectrumCanvas.height = spectrumCanvas.clientHeight;
+    }
+
+    function drawSpectrum() {
+        if (!analyser || !spectrumCtx || !spectrumCanvas) return;
+        analyser.getByteFrequencyData(frequencyData);
+        spectrumCtx.clearRect(0, 0, spectrumCanvas.width, spectrumCanvas.height);
+
+        const bars = Math.min(visualizerConfig.bar_count || 30, frequencyData.length);
+        const barWidth = spectrumCanvas.width / bars;
+        spectrumCtx.strokeStyle = visualizerConfig.color || '#ff1a1a';
+        spectrumCtx.lineWidth = visualizerConfig.line_width || 2;
+        spectrumCtx.lineCap = 'round';
+
+        for (let i = 0; i < bars; i++) {
+            const dataIndex = Math.floor(i * (frequencyData.length / bars));
+            const value = frequencyData[dataIndex] / 255;
+            const maxHeight = visualizerConfig.max_bar_height || spectrumCanvas.height - 12;
+            const barHeight = Math.max(4, value * maxHeight);
+            const x = barWidth * i + barWidth / 2;
+            spectrumCtx.beginPath();
+            spectrumCtx.moveTo(x, spectrumCanvas.height - 6);
+            spectrumCtx.lineTo(x, spectrumCanvas.height - 6 - barHeight);
+            spectrumCtx.stroke();
+        }
+
+        visualizerAnimation = requestAnimationFrame(drawSpectrum);
+    }
+
+    function initVisualizer() {
+        if (!visualizerConfig.enabled || !audio || !spectrumCanvas || !spectrumCtx) {
+            if (spectrumCanvas && spectrumCanvas.parentElement) {
+                spectrumCanvas.parentElement.style.display = 'none';
+            }
+            return;
+        }
+
+        resizeSpectrumCanvas();
+
+        if (audioContext || !window.AudioContext && !window.webkitAudioContext) return;
+
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const source = audioContext.createMediaElementSource(audio);
+        analyser = audioContext.createAnalyser();
+        analyser.fftSize = 128;
+        frequencyData = new Uint8Array(analyser.frequencyBinCount);
+
+        source.connect(analyser);
+        analyser.connect(audioContext.destination);
+        drawSpectrum();
+        window.addEventListener('resize', resizeSpectrumCanvas);
+    }
+
+    function playAudio() {
+        if (audioContext && audioContext.state === 'suspended') {
+            audioContext.resume();
+        }
+
+        audio.play().then(() => {
+            isPlaying = true;
+            toggleBtn.textContent = 'Pause';
+            toggleBtn.classList.add('playing');
+        }).catch(() => {
+            isPlaying = false;
+            toggleBtn.textContent = 'Play';
+        });
+    }
+
+    if (!audio || !toggleBtn || !progressFill || !progressBar || !volumeSlider || !volumeValue) return;
+
+    function formatTime(seconds) {
+        if (!seconds || Number.isNaN(seconds)) return '00:00';
+        const minutes = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    function highlightTrack(index) {
+        playlistItems.forEach((item, itemIndex) => {
+            item.classList.toggle('active', itemIndex === index);
+        });
+    }
+
+    function updateNowPlaying() {
+        const track = tracks[currentTrackIndex];
+        if (!track) return;
+        if (coverImg) coverImg.src = track.cover || 'photos/cover-music-1.jpg';
+        if (titleEl) titleEl.textContent = track.judul || 'Tanpa judul';
+        if (artistEl) artistEl.textContent = track.artis || 'Tidak diketahui';
+        audio.src = track.path || '';
+        audio.load();
+        highlightTrack(currentTrackIndex);
+        initVisualizer();
+    }
+
+    function updateVolumeDisplay(value) {
+        volumeValue.textContent = `${value}%`;
+        if (audio) audio.volume = value / 100;
+    }
+
+    volumeSlider.addEventListener('input', () => {
+        const volume = Number(volumeSlider.value);
+        updateVolumeDisplay(volume);
+    });
+
+    updateVolumeDisplay(Number(volumeSlider.value));
+
+    function pauseAudio() {
+        audio.pause();
+        isPlaying = false;
+        toggleBtn.textContent = 'Play';
+        toggleBtn.classList.remove('playing');
+    }
+
+    function togglePlayback() {
+        if (isPlaying) {
+            pauseAudio();
+        } else {
+            playAudio();
+        }
+    }
+
+    function selectTrack(index) {
+        if (index < 0) index = tracks.length - 1;
+        if (index >= tracks.length) index = 0;
+        currentTrackIndex = index;
+        updateNowPlaying();
+        playAudio();
+    }
+
+    function previousTrack() {
+        selectTrack(currentTrackIndex - 1);
+    }
+
+    function nextTrack() {
+        selectTrack(currentTrackIndex + 1);
+    }
+
+    toggleBtn.addEventListener('click', togglePlayback);
+    prevBtn.addEventListener('click', previousTrack);
+    nextBtn.addEventListener('click', nextTrack);
+
+    audio.addEventListener('timeupdate', () => {
+        if (audio.duration) {
+            const progress = (audio.currentTime / audio.duration) * 100;
+            progressFill.style.width = `${progress}%`;
+            currentTimeEl.textContent = formatTime(audio.currentTime);
+        }
+    });
+
+    audio.addEventListener('loadedmetadata', () => {
+        durationEl.textContent = formatTime(audio.duration);
+    });
+
+    audio.addEventListener('ended', nextTrack);
+
+    if (progressBar) {
+        progressBar.addEventListener('click', (event) => {
+            const rect = progressBar.getBoundingClientRect();
+            const clickPosition = event.clientX - rect.left;
+            const percentage = clickPosition / rect.width;
+            if (audio.duration) {
+                audio.currentTime = percentage * audio.duration;
+            }
+        });
+    }
+
+    playlistItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const index = Number(item.dataset.trackIndex);
+            selectTrack(index);
+        });
+    });
+
+    updateNowPlaying();
+}
+
 // --- Contact Section ---
 function renderYoutube() {
     const youtubeLink = configData.youtube_channel;
@@ -203,6 +443,40 @@ function renderPortfolio() {
 
     portfolioButton.textContent = portfolio.button_text || 'Kunjungi Portofolio';
     portfolioButton.href = portfolio.url;
+}
+
+function renderPromo() {
+    const promo = configData.promo;
+    const promoSection = document.getElementById('promo');
+    const promoImage = document.querySelector('#promo-image');
+    const promoLabel = document.getElementById('promo-label');
+    const promoTitle = document.getElementById('promo-title');
+    const promoDescription = document.getElementById('promo-description');
+    const promoButton = document.getElementById('promo-button');
+
+    if (!promo || !promoSection) return;
+
+    if (promo.enabled === false) {
+        promoSection.style.display = 'none';
+        return;
+    }
+
+    if (promoImage && promo.image) {
+        promoImage.src = promo.image;
+    }
+    if (promoLabel && promo.label) {
+        promoLabel.textContent = promo.label;
+    }
+    if (promoTitle && promo.title) {
+        promoTitle.textContent = promo.title;
+    }
+    if (promoDescription && promo.description) {
+        promoDescription.textContent = promo.description;
+    }
+    if (promoButton) {
+        promoButton.textContent = promo.button_text || promoButton.textContent;
+        promoButton.href = promo.link || promoButton.href;
+    }
 }
 
 function renderContact() {
@@ -587,6 +861,64 @@ function initTerminal() {
             executeCommand(terminalInput.value);
             terminalInput.value = '';
         }
+    });
+}
+
+function initEntryPopup() {
+    const popup = document.getElementById('entry-popup');
+    const blurTarget = document.getElementById('blur-target');
+    const closeButtons = popup ? popup.querySelectorAll('[data-popup-close]') : [];
+    const ctaButton = popup ? popup.querySelector('.entry-popup-cta') : null;
+    const popupTitle = document.getElementById('entry-popup-title');
+    const popupCopy = document.getElementById('entry-popup-copy');
+    const popupImage = document.getElementById('entry-popup-image');
+    const popupButton = document.getElementById('entry-popup-button');
+
+    const popupConfig = configData?.popup;
+    if (!popup || !blurTarget || !popupConfig || !popupConfig.enabled) {
+        if (popup) {
+            popup.style.display = 'none';
+        }
+        return;
+    }
+
+    if (popupTitle && popupConfig.headline) {
+        popupTitle.textContent = popupConfig.headline;
+    }
+
+    if (popupCopy && popupConfig.description) {
+        popupCopy.textContent = popupConfig.description;
+    }
+
+    if (popupImage && popupConfig.image) {
+        popupImage.src = popupConfig.image;
+    }
+
+    if (popupButton && popupConfig.button_text) {
+        popupButton.textContent = popupConfig.button_text;
+    }
+
+    function closePopup() {
+        popup.classList.remove('open');
+        blurTarget.classList.remove('blurred');
+        popup.setAttribute('aria-hidden', 'true');
+    }
+
+    closeButtons.forEach(button => {
+        button.addEventListener('click', closePopup);
+    });
+
+    if (ctaButton) {
+        ctaButton.addEventListener('click', () => {
+            const targetLink = popupConfig.link || 'Dana/index.html';
+            window.location.href = targetLink;
+        });
+    }
+
+    requestAnimationFrame(() => {
+        popup.classList.add('open');
+        blurTarget.classList.add('blurred');
+        popup.setAttribute('aria-hidden', 'false');
     });
 }
 
