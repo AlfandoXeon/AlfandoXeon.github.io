@@ -114,6 +114,12 @@
       "judul": "Korban Setia",
       "artis": "Trio Boy",
       "path": "musik/KORBAN-SETIA.mp3"
+    },
+    {
+      "cover": "musik/junMunthe.webp",
+      "judul": "Pulut Roham",
+      "artis": "Jun Munthe",
+      "path": "musik/pulutRoham.mp3"
     }
   ]
 }
