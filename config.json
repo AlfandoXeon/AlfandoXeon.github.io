@@ -108,6 +108,12 @@
       "judul": "Sigar Loh Ya",
       "artis": "Ngawi Empire",
       "path": "musik/sigAR.mp3"
+    },
+    {
+      "cover": "musik/korbanSetia.webp",
+      "judul": "Korban Setia",
+      "artis": "Trio Boy",
+      "path": "musik/KORBAN-SETIA.mp3"
     }
   ]
 }
