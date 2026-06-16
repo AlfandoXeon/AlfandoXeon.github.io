@@ -60,7 +60,7 @@
     "accent_glow": "rgba(255, 26, 26, 0.3)"
   },
   "popup": {
-    "enabled": true,
+    "enabled": false,
     "image": "photos/PosterDana3.png",
     "headline": "Klaim Saldo Dana Gratis Sekarang",
     "description": "*Terbatas, siapa cepat dia dapat",
