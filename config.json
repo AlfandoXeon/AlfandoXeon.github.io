@@ -60,12 +60,12 @@
     "accent_glow": "rgba(255, 26, 26, 0.3)"
   },
   "popup": {
-    "enabled": false,
-    "image": "photos/PosterDana3.png",
-    "headline": "Klaim Saldo Dana Gratis Sekarang",
-    "description": "*Terbatas, siapa cepat dia dapat",
-    "button_text": "Klaim saldo dana mu sekarang juga",
-    "link": "Dana/index.html"
+    "enabled": true,
+    "image": "photos/xeonmusicPrster.png",
+    "headline": "Xeon Music Release",
+    "description": "Xeon music - Platform untuk mendengarkan & download music secara gratis ( by AlfandoXeon )",
+    "button_text": "Dengarkan musik sekarang!",
+    "link": "https://xeonmusic.github.io"
   },
   "promo": {
     "enabled": true,
