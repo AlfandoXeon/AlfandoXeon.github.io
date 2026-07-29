@@ -1,0 +1,457 @@
+
+
+/* ---------- Google Font Import ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap');
+
+/* ---------- CSS Variables ---------- */
+:root {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --bg-surface: #1a1a1a;
+  --bg-elevated: #141414;
+
+  --red: #ff003c;
+  --red-hover: #e00035;
+  --red-dim: #cc0030;
+  --red-glow: rgba(255, 0, 60, 0.25);
+  --red-glow-strong: rgba(255, 0, 60, 0.4);
+  --red-subtle: rgba(255, 0, 60, 0.08);
+
+  --white: #ffffff;
+  --gray-100: #e5e5e5;
+  --gray-300: #aaaaaa;
+  --gray-500: #888888;
+  --gray-600: #666666;
+  --gray-700: #555555;
+  --gray-800: #333333;
+  --gray-900: #1a1a1a;
+
+  --green: #00cc66;
+  --green-hover: #00b359;
+  --green-glow: rgba(0, 204, 102, 0.25);
+
+  --font-body: 'Poppins', sans-serif;
+  --transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ---------- Reset & Base ---------- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-primary);
+  color: var(--white);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--red);
+  color: var(--white);
+}
+
+/* ---------- App Full Screen ---------- */
+#app {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* ---------- Slide Container (Full Screen) ---------- */
+#slide-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  position: relative;
+}
+
+/* ---------- Slide Content ---------- */
+.slide-content {
+  max-width: 680px;
+  width: 100%;
+  text-align: center;
+  animation: fadeSlideIn 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.slide-content.slide-out {
+  animation: fadeSlideOut 0.35s cubic-bezier(0.55, 0.06, 0.68, 0.19) forwards;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeSlideOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-25px);
+  }
+}
+
+/* ---------- Slide Label ---------- */
+.slide-label {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gray-600);
+  margin-bottom: 2rem;
+  border: 1px solid var(--gray-800);
+  padding: 0.4rem 1rem;
+  border-radius: 2px;
+}
+
+/* ---------- Typography ---------- */
+.slide-title {
+  font-family: var(--font-body);
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.5px;
+}
+
+.slide-title .highlight {
+  color: var(--red);
+}
+
+.slide-text {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 2;
+  color: var(--gray-500);
+  margin-bottom: 2rem;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.slide-text .text-red {
+  color: var(--red);
+  font-weight: 400;
+}
+
+.slide-text .text-pink {
+  color: var(--red);
+  font-weight: 500;
+}
+
+.slide-note {
+  font-size: 0.75rem;
+  color: var(--gray-700);
+  margin-top: 1.5rem;
+  letter-spacing: 0.5px;
+}
+
+/* ---------- Divider Line ---------- */
+.slide-divider {
+  width: 40px;
+  height: 1px;
+  background: var(--gray-800);
+  margin: 2rem auto;
+}
+
+/* ---------- Buttons ---------- */
+.btn-confess {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2.2rem;
+  border-radius: 3px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+.btn-confess:active {
+  transform: scale(0.97);
+}
+
+/* Primary Red */
+.btn-primary-red {
+  background: var(--red);
+  color: var(--white);
+  box-shadow: 0 0 20px var(--red-glow);
+}
+
+.btn-primary-red:hover {
+  background: var(--red-hover);
+  box-shadow: 0 0 35px var(--red-glow-strong);
+  color: var(--white);
+}
+
+/* Outline */
+.btn-outline {
+  background: transparent;
+  color: var(--gray-500);
+  border: 1px solid var(--gray-800);
+}
+
+.btn-outline:hover {
+  border-color: var(--red);
+  color: var(--red);
+  box-shadow: 0 0 15px var(--red-glow);
+}
+
+/* Success (Terima) */
+.btn-success-confess {
+  background: var(--green);
+  color: var(--white);
+  box-shadow: 0 0 20px var(--green-glow);
+}
+
+.btn-success-confess:hover {
+  background: var(--green-hover);
+  box-shadow: 0 0 35px rgba(0, 204, 102, 0.4);
+  color: var(--white);
+}
+
+/* Danger (Tolak) */
+.btn-danger-confess {
+  background: transparent;
+  color: var(--gray-500);
+  border: 1px solid var(--gray-800);
+}
+
+.btn-danger-confess:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+/* WhatsApp */
+.btn-whatsapp {
+  background: var(--green);
+  color: var(--white);
+  box-shadow: 0 0 20px var(--green-glow);
+}
+
+.btn-whatsapp:hover {
+  background: var(--green-hover);
+  box-shadow: 0 0 35px rgba(0, 204, 102, 0.4);
+  color: var(--white);
+}
+
+/* Button Groups */
+.btn-group-confess {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 2.5rem;
+  align-items: center;
+}
+
+.btn-group-confess .btn-confess {
+  min-width: 280px;
+}
+
+.btn-group-confess.horizontal {
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.btn-group-confess.horizontal .btn-confess {
+  min-width: 0;
+  flex: 1;
+  max-width: 220px;
+}
+
+/* ---------- Rejection Modal (Dark) ---------- */
+.modal-content.rejection-modal {
+  background: var(--bg-secondary);
+  border: 1px solid var(--gray-800);
+  border-radius: 6px;
+  color: var(--white);
+}
+
+.rejection-modal .modal-header {
+  border-bottom: 1px solid var(--gray-800);
+  padding: 1.25rem 1.5rem;
+}
+
+.rejection-modal .modal-title {
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: var(--white);
+  font-size: 0.95rem;
+}
+
+.rejection-modal .btn-close {
+  filter: invert(1);
+}
+
+.rejection-modal .modal-body {
+  padding: 1.5rem;
+}
+
+.rejection-modal .modal-body p {
+  color: var(--gray-500);
+}
+
+.rejection-modal .form-control {
+  background: var(--bg-primary);
+  border: 1px solid var(--gray-800);
+  border-radius: 4px;
+  padding: 0.85rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--white);
+  transition: var(--transition);
+  resize: none;
+}
+
+.rejection-modal .form-control::placeholder {
+  color: var(--gray-700);
+}
+
+.rejection-modal .form-control:focus {
+  border-color: var(--red);
+  box-shadow: 0 0 0 2px var(--red-glow);
+  background: var(--bg-primary);
+  color: var(--white);
+}
+
+.rejection-modal .modal-footer {
+  border-top: 1px solid var(--gray-800);
+  padding: 1rem 1.5rem;
+}
+
+.rejection-modal .modal-footer .btn {
+  color: var(--gray-600);
+}
+
+.rejection-modal .modal-footer .btn:hover {
+  color: var(--gray-300);
+}
+
+/* ---------- Sad Emoji ---------- */
+.sad-emoji {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.6;
+}
+
+/* ---------- Confetti Canvas ---------- */
+#confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* ---------- Subtle BG Accent ---------- */
+.bg-glow {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--red-subtle) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.5;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 576px) {
+  #slide-container {
+    padding: 2rem 1.5rem;
+  }
+
+  .slide-title {
+    font-size: 2rem;
+  }
+
+  .slide-text {
+    font-size: 0.9rem;
+    line-height: 1.9;
+  }
+
+  .btn-confess {
+    padding: 0.8rem 1.6rem;
+    font-size: 0.8rem;
+  }
+
+  .btn-group-confess .btn-confess {
+    min-width: 100%;
+  }
+
+  .btn-group-confess.horizontal {
+    flex-direction: column;
+  }
+
+  .btn-group-confess.horizontal .btn-confess {
+    max-width: 100%;
+  }
+
+  .slide-label {
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+  }
+}
+
+@media (max-width: 380px) {
+  .slide-title {
+    font-size: 1.7rem;
+  }
+
+  #slide-container {
+    padding: 1.5rem 1.2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .slide-title {
+    font-size: 3.5rem;
+  }
+
+  .slide-text {
+    font-size: 1.05rem;
+  }
+}
+
+@media (min-height: 800px) {
+  #slide-container {
+    padding: 4rem 2rem;
+  }
+}
