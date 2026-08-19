@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nazo Downloader — Multi-Platform Media Tool & Converter</title>
+  <meta name="description" content="Aplikasi desktop cepat dan ringan untuk mengunduh video & audio dari YouTube, TikTok (Tanpa Watermark), Instagram Reels, Facebook, dan konversi format media dengan FFmpeg.">
+  <meta name="author" content="Alfando Xeon">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="foto/icon.png">
+  <link rel="apple-touch-icon" href="foto/icon.png">
+
+  <!-- Google Fonts: Questrial -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Questrial&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- AOS (Animate On Scroll) CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ─── 1. NAVBAR ─────────────────────────────────────────── -->
+  <header class="navbar">
+    <div class="container">
+      <a href="#" class="nav-brand">
+        <img src="foto/icon.png" alt="Nazo Downloader" class="nav-logo">
+        <div class="brand-text">Nazo<span>Downloader</span></div>
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#features">Fitur</a></li>
+          <li><a href="#how-to-use">Petunjuk</a></li>
+          <li><a href="#versions">Arsip Versi</a></li>
+          <li><a href="#developer">Pengembang</a></li>
+          <li><a href="#donation">Dukungan</a></li>
+          <li class="mobile-only-action">
+            <a href="https://github.com/AlfandoXeon/kumpulanMyAplikasi/releases/download/v1/NazoDownloader_Setup_v1.0.2.exe" class="btn-mobile-download" download>
+              <svg width="15" height="15" viewBox="0 0 88 88" fill="currentColor">
+                <path d="M0 12.402l35.687-4.86.016 34.423-35.67.203zm35.67 33.529l.028 34.453L.028 75.48.016 45.728zm4.326-39.027L87.914 0v41.527l-47.918.378zm47.918 43.159L40 88V46.402l47.914.364z"/>
+              </svg>
+              Download Installer (v1.0.2)
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://github.com/AlfandoXeon/kumpulanMyAplikasi/releases/download/v1/NazoDownloader_Setup_v1.0.2.exe" class="btn-nav-download" download>
+          <!-- Windows SVG Logo -->
+          <svg width="14" height="14" viewBox="0 0 88 88" fill="currentColor">
+            <path d="M0 12.402l35.687-4.86.016 34.423-35.67.203zm35.67 33.529l.028 34.453L.028 75.48.016 45.728zm4.326-39.027L87.914 0v41.527l-47.918.378zm47.918 43.159L40 88V46.402l47.914.364z"/>
+          </svg>
+          Download v1.0.2
+        </a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ─── 2. HERO SECTION ───────────────────────────────────── -->
+  <section class="hero" id="download">
+    <div class="container">
+      <div class="hero-version-tag" data-aos="fade-up" data-aos-delay="50">
+        Rilis Terbaru v1.0.2 • Desktop Windows 64-bit
+      </div>
+
+      <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
+        Universal Media Downloader &<br>
+        <span>High-Speed Converter Desktop</span>
+      </h1>
+
+      <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="150">
+        Aplikasi desktop mandiri untuk mengunduh media dari YouTube, TikTok tanpa watermark, Instagram Reels, dan Facebook, serta konversi format audio/video bertenaga engine FFmpeg.
+      </p>
+
+      <div class="hero-cta" data-aos="fade-up" data-aos-delay="200">
+        <a href="https://github.com/AlfandoXeon/kumpulanMyAplikasi/releases/download/v1/NazoDownloader_Setup_v1.0.2.exe" class="btn-primary" download>
+          <!-- Windows SVG Logo -->
+          <svg width="17" height="17" viewBox="0 0 88 88" fill="currentColor">
+            <path d="M0 12.402l35.687-4.86.016 34.423-35.67.203zm35.67 33.529l.028 34.453L.028 75.48.016 45.728zm4.326-39.027L87.914 0v41.527l-47.918.378zm47.918 43.159L40 88V46.402l47.914.364z"/>
+          </svg>
+          Download Installer (v1.0.2)
+        </a>
+
+        <a href="#versions" class="btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+          </svg>
+          Daftar Versi
+        </a>
+      </div>
+
+      <div class="hero-meta" data-aos="fade-up" data-aos-delay="250">
+        <span>
+          <svg width="14" height="14" viewBox="0 0 88 88" fill="currentColor" style="opacity: 0.8;">
+            <path d="M0 12.402l35.687-4.86.016 34.423-35.67.203zm35.67 33.529l.028 34.453L.028 75.48.016 45.728zm4.326-39.027L87.914 0v41.527l-47.918.378zm47.918 43.159L40 88V46.402l47.914.364z"/>
+          </svg>
+          Windows 10 / 11 (64-bit)
+        </span>
+        <span>Ukuran Installer: ~152 MB</span>
+        <span>Lisensi: Gratis & Open Source</span>
+      </div>
+
+      <!-- App Screenshot Showcase -->
+      <div class="mockup-window" data-aos="fade-up" data-aos-delay="300">
+        <div class="window-header">
+          <span class="window-title">Nazo Downloader</span>
+        </div>
+        <img src="foto/fotoSS1.png" alt="Tampilan Antarmuka Nazo Downloader" class="mockup-image">
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 3. SUPPORTED PLATFORMS ────────────────────────────── -->
+  <div class="platforms-bar" data-aos="fade-up">
+    <div class="container">
+      <div class="platforms-list">
+        <span class="platform-item">YouTube Video & Audio</span>
+        <span class="platform-item">TikTok Tanpa Watermark</span>
+        <span class="platform-item">Instagram Reels & Feed</span>
+        <span class="platform-item">Facebook Video</span>
+        <span class="platform-item">Konverter FFmpeg</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 4. FEATURES SECTION ───────────────────────────────── -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">Keunggulan</span>
+        <h2 class="section-title">Performa Tinggi, Efisien, dan Praktis</h2>
+        <p class="section-desc">Dirancang untuk kecepatan unduh maksimal, kualitas media jernih, dan alur kerja yang mudah tanpa hambatan.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+          </div>
+          <h3 class="feature-title">Unduhan Cepat Multi-Platform</h3>
+          <p class="feature-desc">Unduh video dan audio resolusi tinggi hingga 4K dari YouTube, TikTok tanpa watermark, Instagram Reels, dan Facebook dalam hitungan detik.</p>
+        </div>
+
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="150">
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
+          <h3 class="feature-title">Konversi Format Instan</h3>
+          <p class="feature-desc">Ubah format video dan audio (MP4, MP3, WAV, FLAC, MKV, AVI) secara cepat dan offline tanpa menurunkan kualitas asli berkas.</p>
+        </div>
+
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2"></path>
+            </svg>
+          </div>
+          <h3 class="feature-title">Antarmuka Modern & Nyaman</h3>
+          <p class="feature-desc">Navigasi intuitif bebas distraksi dengan pilihan tema Dark Mode dan Light Mode yang elegan sesuai kenyamanan visual Anda.</p>
+        </div>
+
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="250">
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+            </svg>
+          </div>
+          <h3 class="feature-title">Manajemen Riwayat Cerdas</h3>
+          <p class="feature-desc">Kelola, cari, dan kelompokkan riwayat unduhan berdasarkan platform dengan akses cepat langsung ke folder penyimpanan.</p>
+        </div>
+
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <h3 class="feature-title">Pemantau Kecepatan Jaringan</h3>
+          <p class="feature-desc">Uji kecepatan koneksi internet (Ping, Download, Upload) secara presisi untuk memastikan proses unduh berjalan maksimal.</p>
+        </div>
+
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="350">
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </div>
+          <h3 class="feature-title">Privasi Penuh & Bebas Iklan</h3>
+          <p class="feature-desc">Berjalan sepenuhnya secara lokal di komputer Anda tanpa iklan yang mengganggu, tanpa pelacak data, dan tanpa batasan kuota.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 5. HOW TO USE SECTION ─────────────────────────────── -->
+  <section class="section" id="how-to-use" style="background: var(--bg-surface);">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">Panduan Ringkas</span>
+        <h2 class="section-title">Langkah Penggunaan</h2>
+        <p class="section-desc">Empat langkah sederhana untuk mengunduh media dari tautan.</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="step-number">01</div>
+          <h3 class="step-title">Salin URL Media</h3>
+          <p class="step-desc">Salin tautan video atau audio dari YouTube, TikTok, Instagram Reels, atau Facebook.</p>
+        </div>
+
+        <div class="step-card" data-aos="fade-up" data-aos-delay="150">
+          <div class="step-number">02</div>
+          <h3 class="step-title">Ambil Metadata</h3>
+          <p class="step-desc">Tempel URL pada kolom Downloader dan klik tombol Ambil Data untuk memuat info dan thumbnail.</p>
+        </div>
+
+        <div class="step-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="step-number">03</div>
+          <h3 class="step-title">Pilih Format</h3>
+          <p class="step-desc">Pilih format Video (MP4) atau Audio (MP3) serta pilihan resolusi yang tersedia.</p>
+        </div>
+
+        <div class="step-card" data-aos="fade-up" data-aos-delay="250">
+          <div class="step-number">04</div>
+          <h3 class="step-title">Unduh File</h3>
+          <p class="step-desc">Klik tombol Mulai Download. File tersimpan di folder tujuan dan dicatat di tab Riwayat.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 6. VERSIONS & DOWNLOAD ARCHIVE ────────────────────── -->
+  <section class="section" id="versions">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">Daftar Rilis</span>
+        <h2 class="section-title">Download Versi Lainnya</h2>
+        <p class="section-desc">Pilih paket rilis Nazo Downloader yang sesuai dengan lingkungan sistem Anda.</p>
+      </div>
+
+      <div class="versions-box" data-aos="fade-up" data-aos-delay="100">
+        <div id="versionsList">
+          <div style="text-align: center; color: var(--text-muted); padding: 16px;">
+            Memuat daftar versi...
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 7. DEVELOPER PROFILE SECTION ──────────────────────── -->
+  <section class="section" id="developer" style="background: var(--bg-surface);">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">Profil</span>
+        <h2 class="section-title">Tentang Pengembang</h2>
+        <p class="section-desc">Informasi pengembang independen di balik aplikasi Nazo Downloader.</p>
+      </div>
+
+      <div class="dev-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="dev-avatar-box">
+          <img src="foto/profile.png" alt="Alfando Xeon" class="dev-avatar" onerror="this.src='foto/icon.png'">
+          <div class="dev-status-badge">
+            <span class="dev-status-dot"></span>
+            Online but Busy
+          </div>
+        </div>
+
+        <div class="dev-info">
+          <h3 class="dev-name">Alfando Xeon</h3>
+          <div class="dev-role">Software & Application Developer</div>
+          <p class="dev-bio">Programer biasa yang masih terus belajar dari kesalahan ^_^</p>
+
+          <div class="dev-social-links">
+            <a href="https://github.com/AlfandoXeon" target="_blank" rel="noopener" class="btn-social">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              GitHub
+            </a>
+            <a href="https://wa.me/6285764175824" target="_blank" rel="noopener" class="btn-social">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+              </svg>
+              WhatsApp
+            </a>
+            <a href="https://instagram.com/grteo_alfndd21" target="_blank" rel="noopener" class="btn-social">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+              Instagram
+            </a>
+            <a href="https://AlfandoXeon.github.io" target="_blank" rel="noopener" class="btn-social">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+              Website
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 8. DONATION SECTION ───────────────────────────────── -->
+  <section class="section" id="donation">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">Dukungan Pengembang</span>
+        <h2 class="section-title">Donasi Sukarela</h2>
+        <p class="section-desc">
+          Jika aplikasi ini bermanfaat bagi produktivitas Anda, Anda dapat memberikan apresiasi dan dukungan pengembangan berkelanjutan melalui kanal pembayaran berikut.
+        </p>
+      </div>
+
+      <div class="donation-grid">
+        <!-- DANA -->
+        <div class="donation-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="donation-logo-badge logo-dana-box">
+            <!-- DANA Logo SVG -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M21 18v1a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v1h-9a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h9zm-8-2h9a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1zm4-2.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+            </svg>
+            <span>DANA</span>
+          </div>
+          <div class="donation-box">
+            <span class="donation-number">085764175824</span>
+            <button class="btn-copy" data-copy="085764175824" type="button">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              Salin
+            </button>
+          </div>
+          <div class="donation-name">
+            Atas Nama: <strong>GRATEO ALFANDO ATMOJO</strong>
+          </div>
+        </div>
+
+        <!-- BRI -->
+        <div class="donation-card" data-aos="fade-up" data-aos-delay="150">
+          <div class="donation-logo-badge logo-bri-box">
+            <!-- Bank Building / BRI Logo SVG -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="21" x2="21" y2="21"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+              <polyline points="5 6 12 3 19 6"></polyline>
+              <line x1="6" y1="10" x2="6" y2="21"></line>
+              <line x1="10" y1="10" x2="10" y2="21"></line>
+              <line x1="14" y1="10" x2="14" y2="21"></line>
+              <line x1="18" y1="10" x2="18" y2="21"></line>
+            </svg>
+            <span>BANK BRI</span>
+          </div>
+          <div class="donation-box">
+            <span class="donation-number">013001110506509</span>
+            <button class="btn-copy" data-copy="013001110506509" type="button">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              Salin
+            </button>
+          </div>
+          <div class="donation-name">
+            Atas Nama: <strong>GRATEO ALFANDO ATMOJO</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 9. FOOTER ─────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <img src="foto/icon.png" alt="Nazo Downloader">
+          <span>Nazo Downloader</span>
+        </div>
+
+        <ul class="footer-links">
+          <li><a href="#features">Fitur</a></li>
+          <li><a href="#how-to-use">Petunjuk</a></li>
+          <li><a href="#versions">Arsip Versi</a></li>
+          <li><a href="#developer">Pengembang</a></li>
+          <li><a href="#donation">Donasi</a></li>
+          <li><a href="https://AlfandoXeon.github.io" target="_blank" rel="noopener">Developer Website</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Nazo Downloader. Dikembangkan oleh <strong>Alfando Xeon (Grateo Alfando Atmojo)</strong>.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
