@@ -47,20 +47,21 @@ function initMobileNav() {
 /* ─── 2. VERSIONS ARCHIVE LIST LOADER ─── */
 const FALLBACK_VERSIONS = [
   {
-    "version": "v1.0.2",
+    "version": "v1.2.0",
     "releaseDate": "Agustus 2026",
     "status": "Latest",
-    "size": "152.7 MB",
+    "size": "152.8 MB",
     "architecture": "Windows 10/11 (64-bit)",
     "changelog": [
+      "Perbaikan inisialisasi otomatis database SQLite pada instalasi baru (Fixed SQLite OperationalError)",
+      "Optimasi performa jaringan & Anti-Throttling YouTube (Chunking 10MB & multi-fragment download)",
+      "Penambahan manajemen Cookies YouTube di Pengaturan untuk bypass proteksi bot challenge",
+      "Perbaikan converter media audio/video FFmpeg terpadu",
       "Integrasi TikWM API (Download TikTok Full HD tanpa watermark & album foto)",
       "Peningkatan engine Instagram Reels dengan multi-browser session cookies resolver",
-      "Dukungan Tema Dinamis (Dark Mode & Light Mode) tersimpan di database SQLite",
-      "Desain Riwayat Unduhan baru dengan filter platform, status URL, dan pencarian instan",
-      "Speedometer Analog Jaringan dengan visual dial & skala Mbps real-time",
-      "Status Database di Pengaturan dengan opsi pembersihan aman menggunakan VACUUM"
+      "Dukungan Tema Dinamis (Dark Mode & Light Mode) tersimpan di database SQLite"
     ],
-    "downloadUrl": "https://github.com/AlfandoXeon/kumpulanMyAplikasi/releases/download/v1/NazoDownloader_Setup_v1.0.2.exe"
+    "downloadUrl": "https://github.com/AlfandoXeon/kumpulanMyAplikasi/releases/download/v1/NazoDownloader_Setup_v1.2.0.exe"
   }
 ];
 
