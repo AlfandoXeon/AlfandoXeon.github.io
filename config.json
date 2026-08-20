@@ -61,11 +61,11 @@
   },
   "popup": {
     "enabled": true,
-    "image": "photos/xeonmusicPrster.png",
-    "headline": "Xeon Music Release",
-    "description": "Xeon music - Platform untuk mendengarkan & download music secara gratis ( by AlfandoXeon )",
-    "button_text": "Dengarkan musik sekarang!",
-    "link": "https://xeonmusic.github.io"
+    "image": "https://i.ibb.co.com/NgpZyWpC/780c6bdf-dedd-4f3f-baa1-9ab38c6dd47c.png",
+    "headline": "Nazo Downloader For Windows",
+    "description": "Aplikasi Media Downloader untuk windows",
+    "button_text": "Coba sekarang",
+    "link": "https://alfandoxeon.github.io/NazoDownloader/"
   },
   "promo": {
     "enabled": true,
