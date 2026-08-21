@@ -47,9 +47,26 @@ function initMobileNav() {
 /* ─── 2. VERSIONS ARCHIVE LIST LOADER ─── */
 const FALLBACK_VERSIONS = [
   {
-    "version": "v1.2.0",
+    "version": "v1.3.0",
     "releaseDate": "Agustus 2026",
     "status": "Latest",
+    "size": "153.2 MB",
+    "architecture": "Windows 10/11 (64-bit)",
+    "changelog": [
+      "Penambahan Mode CLI Terminal Interaktif (unduh media langsung via terminal in-console bergaya CMD/PowerShell)",
+      "Fitur 'Perlancar Aplikasi' (Smooth & High Performance Mode) dengan Windows Process Priority Booster dan Automatic RAM Cleaner",
+      "Jendela Diagnostik Pemantau Sumber Daya Real-Time (CPU, RAM, Threads, PID & Uptime)",
+      "Modern Microsoft/Adobe Style Splash Screen Loader dengan perenderan logo resmi XeonDownloader",
+      "Aksi Cepat Pop-up Selesai Unduh (Tombol 'Buka File Langsung' & 'Buka History')",
+      "Peningkatan stabilitas Instagram Reels (perbaikan durasi desimal float) dan eliminasi error DPAPI browser cookies",
+      "Penyimpanan status mode performa tinggi dan konfigurasi otomatis ke database SQLite"
+    ],
+    "downloadUrl": "https://github.com/AlfandoXeon/kumpulanMyAplikasi/releases/download/v1/NazoDownloader_Setup_v1.3.0.exe"
+  },
+  {
+    "version": "v1.2.0",
+    "releaseDate": "Agustus 2026",
+    "status": "Stable",
     "size": "152.8 MB",
     "architecture": "Windows 10/11 (64-bit)",
     "changelog": [

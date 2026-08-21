@@ -1,0 +1,33 @@
+Link aplikasi exe yang sudah jadi = 
+
+jadi, saya mau membuat web untuk mendownload aplikasi Nazo Downloader ini 
+
+untuk design web nya, kurang lebih warna nya sama seperti aplikasi utama kita tadi
+
+Buat sebagus dan se aesthetic mungkin..
+
+responsive, dan profesional..
+
+nanti juga saya akan menambahkan beberapa foto dan demo cara penggunaan aplikasi nya, yang ada di folder /foto
+
+
+untuk logo web nya ada di foto/icon.png 
+
+nanti buat logo tersebut sebagai icon web maupun logo di dalam web
+
+untuk link aplikasi menyusul saja, nanti berikan template link saja supaya saya ganti manual
+
+--download versi terbaru
+
+lalu tambahkan juga tab download another version..
+"buatkan java script nya atau json untuk menampung semua link aplikasi exe nya"
+
+dan pada bagian bawah (di atas footer) tambahkan donasi 
+
+1. dana 085764175824
+2. BRI 013001110506509
+
+GRATEO ALFANDO ATMOJO
+
+kurang lebih begitu begitu lah 
+oiya buat html serta lainnya di folder ini aja yaa
