@@ -12,32 +12,32 @@
       const photos = section.photos || [
         {
           src: "./img/WhatsApp Image 2026-09-06 at 20.48.51.jpeg",
-          caption: "Senyum ceria di depan cermin, dari kecil auranya sudah sehangat dan semanis ini ✨",
+          caption: "Senyum ceria di depan cermin, auranya sehangat mentari pagi",
           year: "Masa Balita",
         },
         {
           src: "./img/image.png",
-          caption: "Momen menggemaskan elus anabul kucing putih kesayangan 🐱",
+          caption: "Momen menggemaskan mengelus anabul kucing putih kesayangan",
           year: "Kecil & Penyayang",
         },
         {
           src: "./img/image copy.png",
-          caption: "Pipi tembam yang selalu bikin gemas, duduk manis di sofa vintage kesayangan 🥰",
+          caption: "Pipi tembam yang selalu menggemaskan, duduk manis di sofa vintage",
           year: "Si Paling Imut",
         },
         {
           src: "./img/image copy 2.png",
-          caption: "Paling keren dengan kacamata biru di samping pohon natal! Gaya juara sejak dini 😎🎄",
+          caption: "Paling keren dengan kacamata biru di samping pohon natal",
           year: "Gaya Juara",
         },
         {
           src: "./img/image copy 3.png",
-          caption: "Santai di kursi bambu sambil nyemil biskuit bareng anabul kesayangan 🍪🐾",
+          caption: "Santai di kursi bambu sambil menikmati biskuit ditemani anabul",
           year: "Momen Hangat",
         },
         {
           src: "./img/image copy 4.png",
-          caption: "Pose kuncir dua paling ikonik dan tak terlupakan, selalu sukses bikin tersenyum! 👧💖",
+          caption: "Pose kuncir dua paling ikonik dan selalu berhasil membuat tersenyum",
           year: "Penuh Ceria",
         },
       ];
@@ -45,11 +45,22 @@
       this.photos = photos;
       this.currentIndex = 0;
 
+      const sparkleIcon = window.Icons ? window.Icons.sparkle(13) : "";
+      const cameraIcon = window.Icons ? window.Icons.camera(20) : "";
+      const zoomIcon = window.Icons ? window.Icons.zoom(13) : "";
+      const prevIcon = window.Icons ? window.Icons.chevronLeft(18) : "❮";
+      const nextIcon = window.Icons ? window.Icons.chevronRight(18) : "❯";
+      const closeIcon = window.Icons ? window.Icons.close(18) : "✕";
+      const arrowIcon = window.Icons ? window.Icons.arrowRight(14) : "";
+
       div.innerHTML = `
         <div class="gallery-wrapper">
           <div class="gallery-header">
-            <span class="gallery-tag">✨ Galeri Kenangan</span>
-            <h2 class="gallery-title">${section.title || "Foto Masa Kecilmu yang Menggemaskan"}</h2>
+            <span class="gallery-tag">${sparkleIcon} <span>Galeri Kenangan</span></span>
+            <h2 class="gallery-title">
+              <span class="gallery-title-icon">${cameraIcon}</span>
+              <span>${section.title || "Galeri Foto Masa Kecilmu"}</span>
+            </h2>
             <p class="gallery-subtitle">${section.subtitle || "Tumbuh menjadi sosok yang paling kucintai hingga kini di usia 24 tahun"}</p>
           </div>
 
@@ -58,7 +69,10 @@
               <div class="washi-tape"></div>
               <div class="polaroid-img-box">
                 <img src="${photos[0].src}" alt="${photos[0].caption}" id="polaroid-image" />
-                <button class="zoom-badge" title="Perbesar Foto">🔍 Perbesar</button>
+                <button class="zoom-badge" title="Perbesar Foto">
+                  ${zoomIcon}
+                  <span>Perbesar</span>
+                </button>
               </div>
               <div class="polaroid-caption-area">
                 <span class="polaroid-year" id="polaroid-year">${photos[0].year || "Memori Indah"}</span>
@@ -70,7 +84,7 @@
 
           <!-- Controls -->
           <div class="gallery-nav">
-            <button class="gallery-btn prev-btn" id="gallery-prev" title="Foto Sebelumnya">❮</button>
+            <button class="gallery-btn prev-btn" id="gallery-prev" title="Foto Sebelumnya">${prevIcon}</button>
             <div class="gallery-dots" id="gallery-dots">
               ${photos
                 .map(
@@ -79,11 +93,14 @@
                 )
                 .join("")}
             </div>
-            <button class="gallery-btn next-btn" id="gallery-next" title="Foto Selanjutnya">❯</button>
+            <button class="gallery-btn next-btn" id="gallery-next" title="Foto Selanjutnya">${nextIcon}</button>
           </div>
 
           <div class="gallery-footer-action">
-            <button class="continue-story-btn" id="gallery-continue">Lanjut ke Pesan Terakhir 💌</button>
+            <button class="continue-story-btn" id="gallery-continue">
+              <span>Lanjut ke Pesan Terakhir</span>
+              ${arrowIcon}
+            </button>
           </div>
         </div>
 
@@ -91,7 +108,7 @@
         <div class="gallery-lightbox" id="gallery-lightbox">
           <div class="lightbox-backdrop"></div>
           <div class="lightbox-content">
-            <button class="lightbox-close" id="lightbox-close" title="Tutup">✕</button>
+            <button class="lightbox-close" id="lightbox-close" title="Tutup">${closeIcon}</button>
             <img src="${photos[0].src}" alt="Preview Foto" id="lightbox-img" />
             <p class="lightbox-caption" id="lightbox-caption">${photos[0].caption}</p>
           </div>
@@ -127,10 +144,10 @@
         this.currentIndex = index;
 
         gsap.to(card, {
-          duration: 0.22,
+          duration: 0.2,
           scale: 0.95,
           opacity: 0.4,
-          rotation: (Math.random() - 0.5) * 6,
+          rotation: (Math.random() - 0.5) * 5,
           ease: "power2.in",
           onComplete: () => {
             const cur = photos[this.currentIndex];
@@ -246,44 +263,47 @@
       const continueBtn = el.querySelector("#gallery-continue");
 
       el.style.pointerEvents = "auto";
+      tl.addLabel("galleryStart");
 
       // Animate gallery in
       tl.fromTo(
         wrapper,
-        { opacity: 0, y: 40, scale: 0.95 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "power2.out" }
+        { opacity: 0, y: 35, scale: 0.95 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "power2.out" }
       )
         .fromTo(
           card,
-          { scale: 0.7, rotation: -10, opacity: 0 },
-          { scale: 1, rotation: -2, opacity: 1, duration: 0.8, ease: "back.out(1.7)" },
-          "-=0.4"
+          { scale: 0.75, rotation: -10, opacity: 0 },
+          { scale: 1, rotation: -2, opacity: 1, duration: 0.7, ease: "back.out(1.6)" },
+          "-=0.3"
         )
         .fromTo(
           el.querySelectorAll(".gallery-nav, .gallery-footer-action"),
           { opacity: 0, y: 15 },
-          { opacity: 1, y: 0, duration: 0.5, stagger: 0.15 },
+          { opacity: 1, y: 0, duration: 0.5, stagger: 0.12 },
           "-=0.2"
         );
 
-      // Smooth automated preview of photos so user sees more than one photo during timeline
+      // Smooth automated preview of photos
       if (this.photos && this.photos.length > 1) {
         tl.call(() => {
           if (this.updateCard) this.updateCard(1);
-        }, null, "+=3.0");
+        }, null, "+=2.8");
 
         tl.call(() => {
           if (this.updateCard) this.updateCard(2);
-        }, null, "+=3.0");
+        }, null, "+=2.8");
       }
 
       // Friendly pause
-      tl.to({}, { duration: 3.5 });
+      tl.to({}, { duration: 3.2 });
+      tl.addLabel("galleryEnd");
 
-      // If user clicks continue button, proceed to closing
+      // Continue button handler
       if (continueBtn) {
-        continueBtn.onclick = () => {
-          // Advance timeline past the gallery
+        continueBtn.onclick = (e) => {
+          e.stopPropagation();
+          tl.seek("galleryEnd");
           tl.play();
         };
       }
@@ -291,10 +311,10 @@
 
     exit(tl, el) {
       tl.to(el.querySelector(".gallery-wrapper"), {
-        duration: 0.6,
+        duration: 0.5,
         opacity: 0,
-        y: -30,
-        scale: 0.95,
+        y: -25,
+        scale: 0.96,
         ease: "power2.in",
         onComplete: () => {
           el.style.pointerEvents = "none";

@@ -7,26 +7,31 @@
       div.className = "section section-chatbox";
 
       const senderName = section.sender || "Glorius Paskan Danu";
-      const btnText = section.buttonText || "Kirim 💌";
+      const btnText = section.buttonText || "Buka Pesan";
+      const mailIcon = window.Icons ? window.Icons.mail(18) : "";
+      const arrowIcon = window.Icons ? window.Icons.arrowRight(14) : "";
 
       div.innerHTML = `
         <div class="text-box">
           <div class="chat-header">
-            <span class="chat-avatar">💌</span>
+            <span class="chat-avatar">${mailIcon}</span>
             <div class="chat-sender-info">
               <span class="chat-sender-name">${senderName}</span>
-              <span class="chat-status">mengetik pesan manis...</span>
+              <span class="chat-status">menulis pesan penuh kasih...</span>
             </div>
           </div>
           <p class="hbd-chatbox"></p>
-          <button class="fake-btn" type="button">${btnText}</button>
+          <button class="fake-btn" type="button">
+            <span>${btnText}</span>
+            ${arrowIcon}
+          </button>
         </div>
       `;
 
       // Split message into spans preserving whitespace & linebreaks
       const chatbox = div.querySelector(".hbd-chatbox");
       const msg = section.message || "Selamat Ulang Tahun!";
-      
+
       let html = "";
       for (let i = 0; i < msg.length; i++) {
         const char = msg[i];
@@ -50,14 +55,14 @@
       const fakeBtn = el.querySelector(".fake-btn");
       const status = el.querySelector(".chat-status");
 
-      // Dynamic duration based on character count (approx 20 chars per second for pleasant typing)
-      const typeDuration = Math.min(Math.max(chars.length * 0.03, 1.8), 3.5);
-      // Reading pause based on message length (at least 3.5s up to 6.5s)
-      const readPause = Math.min(Math.max(chars.length * 0.035, 3.5), 7.0);
+      // Dynamic duration based on character count
+      const typeDuration = Math.min(Math.max(chars.length * 0.024, 1.6), 3.2);
+      // Reading pause based on message length
+      const readPause = Math.min(Math.max(chars.length * 0.03, 3.2), 6.0);
 
       tl.from(textBox, {
         duration: 0.7,
-        scale: 0.8,
+        scale: 0.85,
         opacity: 0,
         y: 30,
         ease: "back.out(1.5)",
@@ -76,10 +81,10 @@
           duration: typeDuration,
           visibility: "visible",
           opacity: 1,
-          stagger: 0.02,
+          stagger: 0.018,
           ease: "none",
           onComplete: () => {
-            if (status) status.textContent = "terkirim dengan cinta ❤️";
+            if (status) status.textContent = "terkirim dengan segenap cinta";
           },
         })
         .to(
@@ -98,18 +103,18 @@
         .to(
           textBox,
           {
-            duration: 0.6,
-            scale: 0.85,
+            duration: 0.5,
+            scale: 0.88,
             opacity: 0,
-            y: -60,
+            y: -50,
             ease: "power2.in",
           },
-          "+=0.8"
+          "+=0.6"
         );
     },
 
     exit(tl, el) {
-      // Handled in animate
+      // Handled inside animate
     },
   };
 })();

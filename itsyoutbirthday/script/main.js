@@ -1,5 +1,5 @@
 /**
- * Engine — membaca CONFIG, memuat komponen dinamis, me-render & mengorkestrasi animasi GSAP.
+ * Engine Utama — membaca CONFIG, memuat komponen, me-render & mengorkestrasi animasi GSAP.
  */
 
 // ── Tema ────────────────────────────────────────────────────────
@@ -11,15 +11,17 @@ function applyTheme(mode) {
   const c = CONFIG.colors || {};
 
   root.style.setProperty("--primary", c.primary || "#f43f5e");
-  root.style.setProperty("--accent", c.accent || "#8b5cf6");
+  root.style.setProperty("--accent", c.accent || "#a855f7");
 
   const theme = c[mode] || c.dark || {};
-  root.style.setProperty("--bg", theme.background || "#0b0f19");
+  root.style.setProperty("--bg", theme.background || "#090d16");
   root.style.setProperty("--text", theme.text || "#f8fafc");
 
   // Update toggle icon
   const btn = document.getElementById("theme-toggle");
-  if (btn) btn.innerHTML = mode === "dark" ? "☀️" : "🌙";
+  if (btn && window.Icons) {
+    btn.innerHTML = mode === "dark" ? window.Icons.sun(20) : window.Icons.moon(20);
+  }
 }
 
 function createThemeToggle() {
@@ -27,7 +29,7 @@ function createThemeToggle() {
   const btn = document.createElement("button");
   btn.id = "theme-toggle";
   btn.title = "Ganti Mode Gelap / Terang";
-  btn.innerHTML = currentMode === "dark" ? "☀️" : "🌙";
+  btn.innerHTML = currentMode === "dark" ? (window.Icons ? window.Icons.sun(20) : "☀️") : (window.Icons ? window.Icons.moon(20) : "🌙");
   btn.addEventListener("click", () => {
     applyTheme(currentMode === "dark" ? "light" : "dark");
   });
@@ -41,21 +43,25 @@ function createMusicController(audio) {
   const btn = document.createElement("button");
   btn.id = "music-controller";
   btn.title = "Nyalakan / Jeda Musik";
+  const musicIcon = window.Icons ? window.Icons.music(16) : "🎵";
+
   btn.innerHTML = `
-    <div class="music-disc">🎵</div>
+    <div class="music-disc">${musicIcon}</div>
     <span class="music-label">Musik</span>
   `;
 
   const updateState = () => {
     if (!audio) return;
+    const disc = btn.querySelector(".music-disc");
+    const label = btn.querySelector(".music-label");
     if (audio.paused) {
       btn.classList.remove("playing");
-      btn.querySelector(".music-disc").innerHTML = "🔇";
-      btn.querySelector(".music-label").textContent = "Mute";
+      disc.innerHTML = window.Icons ? window.Icons.mute(16) : "🔇";
+      label.textContent = "Mute";
     } else {
       btn.classList.add("playing");
-      btn.querySelector(".music-disc").innerHTML = "🎵";
-      btn.querySelector(".music-label").textContent = "Putar";
+      disc.innerHTML = window.Icons ? window.Icons.music(16) : "🎵";
+      label.textContent = "Putar";
     }
   };
 
@@ -79,7 +85,6 @@ function createMusicController(audio) {
 // ── Script Loader ────────────────────────────────────────────────
 function loadScript(src) {
   return new Promise((resolve, reject) => {
-    // Check if script already loaded
     if (document.querySelector(`script[src="${src}"]`)) {
       return resolve();
     }
@@ -91,16 +96,20 @@ function loadScript(src) {
   });
 }
 
+// ── State Global Presentation ───────────────────────────────────
+let currentTimeline = null;
+let globalAudio = null;
+
 // ── Main Initializer ─────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", async () => {
   applyTheme(currentMode);
   createThemeToggle();
 
-  // Set music source
+  // Set music source (knt.mp4)
   const audio = document.querySelector(".song");
+  globalAudio = audio;
   if (audio && CONFIG.music) {
-    const source = audio.querySelector("source");
-    if (source) source.src = CONFIG.music;
+    audio.src = CONFIG.music;
     audio.load();
   }
 
@@ -118,30 +127,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
-  // Render all sections
-  const container = document.querySelector(".container");
-  const rendered = [];
-
-  CONFIG.sections.forEach((section) => {
-    const comp = window.Components && window.Components[section.type];
-    if (!comp) {
-      console.warn(`Komponen "${section.type}" tidak ditemukan, dilewati.`);
-      return;
-    }
-    const el = comp.render(container, section, CONFIG);
-    rendered.push({ el, comp, section });
-  });
-
-  // SweetAlert music prompt dalam Bahasa Indonesia yang romantis
+  // SweetAlert dialog estetik tanpa emoji mentah
   const isDark = currentMode === "dark";
   Swal.fire({
-    title: "Putar Musik Pengiring? 🎶",
-    html: `<p style="font-size: 0.95rem; line-height: 1.6; opacity: 0.85;">Ada alunan melodi manis untuk menemani perayaan ulang tahunmu ke-24 hari ini ❤️</p>`,
+    title: "Putar Musik Pengiring?",
+    html: `<p style="font-size: 0.95rem; line-height: 1.6; opacity: 0.85;">Alunan melodi siap menemani perayaan ulang tahunmu ke-24 hari ini.</p>`,
     icon: "question",
     showCancelButton: true,
     confirmButtonColor: CONFIG.colors?.primary || "#f43f5e",
     cancelButtonColor: isDark ? "#475569" : "#94a3b8",
-    confirmButtonText: "Iya, Putar Musik! ✨",
+    confirmButtonText: "Putar Musik",
     cancelButtonText: "Nanti Saja",
     background: isDark ? "#111827" : "#ffffff",
     color: isDark ? "#f8fafc" : "#1e293b",
@@ -155,18 +150,48 @@ document.addEventListener("DOMContentLoaded", async () => {
   }).then((result) => {
     if (result.isConfirmed && audio) {
       audio.play().catch((err) => {
-        console.warn("Autoplay audio dicegah oleh browser:", err);
+        console.warn("Autoplay audio dicegah browser:", err);
       });
     }
-    buildTimeline(rendered, audio);
+    runPresentation();
   });
 });
 
+// ── Render & Jalankan Presentasi Bersih (Pencegah Bug Layar Kosong) ────
+function runPresentation() {
+  // 1. Hentikan timeline lama dan bersihkan semua animasi GSAP
+  if (currentTimeline) {
+    currentTimeline.kill();
+    currentTimeline = null;
+  }
+  gsap.killTweensOf("*");
+
+  // 2. Bersihkan container DOM agar tidak ada inline styles atau event listener yang bertabrakan
+  const container = document.querySelector(".container");
+  container.innerHTML = "";
+  container.style.visibility = "visible";
+
+  // 3. Render ulang semua bagian secara segar
+  const rendered = [];
+  CONFIG.sections.forEach((section) => {
+    const comp = window.Components && window.Components[section.type];
+    if (!comp) {
+      console.warn(`Komponen "${section.type}" tidak ditemukan, dilewati.`);
+      return;
+    }
+    const el = comp.render(container, section, CONFIG);
+    rendered.push({ el, comp, section });
+  });
+
+  // 4. Bangun timeline GSAP segar
+  currentTimeline = buildTimeline(rendered);
+}
+
 // ── Timeline Builder ─────────────────────────────────────────────
-function buildTimeline(rendered, audio) {
+function buildTimeline(rendered) {
   const tl = gsap.timeline();
 
-  tl.to(".container", { duration: 0.6, visibility: "visible" });
+  tl.to(".container", { duration: 0.4, visibility: "visible" });
 
   // Track deferred exits for overlay components
   let deferredExits = [];
@@ -199,25 +224,23 @@ function buildTimeline(rendered, audio) {
   // Flush remaining
   deferredExits.forEach((fn) => fn());
 
-  // Setup replay button listener
-  const setupReplay = () => {
+  // Setup replay button listener secara terisolasi dan bersih
+  const bindReplay = () => {
     const replayBtn = document.getElementById("replay");
     if (replayBtn) {
-      replayBtn.onclick = () => {
-        // Reset any custom styles applied directly
-        document.querySelectorAll(".section").forEach((sec) => {
-          sec.style.position = "";
-          sec.style.zIndex = "";
-          sec.style.pointerEvents = "";
-        });
-        if (audio && audio.paused) {
-          audio.play().catch(() => {});
+      replayBtn.onclick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (globalAudio && globalAudio.paused) {
+          globalAudio.play().catch(() => {});
         }
-        tl.restart();
+        runPresentation();
       };
     }
   };
 
-  setupReplay();
-  tl.eventCallback("onComplete", setupReplay);
+  bindReplay();
+  tl.eventCallback("onComplete", bindReplay);
+
+  return tl;
 }

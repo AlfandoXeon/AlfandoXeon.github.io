@@ -1,8 +1,8 @@
 (function () {
   window.Components = window.Components || {};
 
-  const ENTER = { opacity: 0, y: 30, rotationX: 10, scale: 0.95 };
-  const LEAVE = { opacity: 0, y: -30, rotationX: -10, scale: 1.05 };
+  const ENTER = { opacity: 0, y: 24, rotationX: 8, scale: 0.96 };
+  const LEAVE = { opacity: 0, y: -24, rotationX: -8, scale: 1.04 };
 
   window.Components.ideas = {
     render(container, section) {
@@ -10,35 +10,50 @@
       div.className = "section section-ideas";
 
       const title = section.title || "Kamu Dirayakan Olehku";
-      const titleEl = document.createElement("div");
-      titleEl.className = "ideas-header";
-      titleEl.innerHTML = `<span class="ideas-badge">📜 Untaian Rasa</span><h3 class="ideas-main-title">${title}</h3>`;
-      div.appendChild(titleEl);
+      const scrollIcon = window.Icons ? window.Icons.scroll(14) : "";
+      const skipIcon = window.Icons ? window.Icons.skip(13) : "";
 
-      const lines = section.lines || [];
-      const versesContainer = document.createElement("div");
-      versesContainer.className = "ideas-verses-container";
+      div.innerHTML = `
+        <div class="ideas-header">
+          <div class="ideas-header-top">
+            <span class="ideas-badge">
+              ${scrollIcon}
+              <span>Untaian Rasa</span>
+            </span>
+            <button class="skip-poem-btn" id="skip-poem" title="Lewati puisi ini">
+              <span>Lewati</span>
+              ${skipIcon}
+            </button>
+          </div>
+          <h3 class="ideas-main-title">${title}</h3>
+        </div>
 
-      lines.forEach((line, i) => {
-        const isLast = i === lines.length - 1;
-        const p = document.createElement("div");
-        p.className = isLast ? "idea-line idea-special" : "idea-line";
-        p.innerHTML = `<div class="idea-line-inner">${line}</div>`;
-        versesContainer.appendChild(p);
-      });
+        <div class="ideas-verses-container">
+          ${(section.lines || [])
+            .map((line, i) => {
+              const isLast = i === (section.lines || []).length - 1;
+              return `
+                <div class="idea-line ${isLast ? "idea-special" : ""}">
+                  <div class="idea-line-inner">${line}</div>
+                </div>
+              `;
+            })
+            .join("")}
+        </div>
 
-      div.appendChild(versesContainer);
-
-      // Big letters / highlight (e.g. "24" or "7")
-      if (section.bigLetters) {
-        const p = document.createElement("div");
-        p.className = "idea-big-letters";
-        p.innerHTML = section.bigLetters
-          .split("")
-          .map((ch) => `<span>${ch}</span>`)
-          .join("");
-        div.appendChild(p);
-      }
+        ${
+          section.bigLetters
+            ? `
+          <div class="idea-big-letters">
+            ${section.bigLetters
+              .split("")
+              .map((ch) => `<span>${ch}</span>`)
+              .join("")}
+          </div>
+        `
+            : ""
+        }
+      `;
 
       container.appendChild(div);
       return div;
@@ -49,95 +64,116 @@
       const regularLines = el.querySelectorAll(".idea-line:not(.idea-special)");
       const specialLine = el.querySelector(".idea-special");
       const bigLetters = el.querySelectorAll(".idea-big-letters span");
+      const skipBtn = el.querySelector("#skip-poem");
+
+      // Set pointer-events so skip button can be clicked
+      el.style.pointerEvents = "auto";
+
+      // Label at start of poem
+      tl.addLabel("poemStart");
 
       // Show header
       tl.fromTo(
         header,
-        { opacity: 0, y: -20, scale: 0.9 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "back.out(1.5)" }
+        { opacity: 0, y: -20, scale: 0.92 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "back.out(1.5)" }
       );
 
-      // Display each poetry verse
+      // Display each poetry verse with snappier, comfortable timing
       regularLines.forEach((line) => {
         tl.fromTo(
           line,
           { ...ENTER },
-          { opacity: 1, y: 0, rotationX: 0, scale: 1, duration: 0.8, ease: "power2.out" }
+          { opacity: 1, y: 0, rotationX: 0, scale: 1, duration: 0.6, ease: "power2.out" }
         );
 
         const strong = line.querySelector("strong");
         if (strong) {
           tl.to(strong, {
-            duration: 0.5,
-            scale: 1.15,
+            duration: 0.4,
+            scale: 1.12,
             color: "var(--primary)",
             textShadow: "0 0 16px rgba(244, 63, 94, 0.6)",
             ease: "back.out(2)",
           });
         }
 
-        // Reading duration - 3 seconds per verse
-        tl.to(line, { duration: 0.6, ...LEAVE, ease: "power2.in" }, "+=3.0");
+        // Reduced delay to ~1.8s for smooth, engaging reading flow
+        tl.to(line, { duration: 0.5, ...LEAVE, ease: "power2.in" }, "+=1.8");
       });
 
       // Special last line (climax)
       if (specialLine) {
         tl.fromTo(
           specialLine,
-          { opacity: 0, scale: 0.7, y: 40 },
-          { opacity: 1, scale: 1, y: 0, duration: 1.0, ease: "back.out(1.8)" }
+          { opacity: 0, scale: 0.75, y: 30 },
+          { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: "back.out(1.8)" }
         );
-
-        const heartOrSpan = specialLine.querySelector("span");
-        if (heartOrSpan) {
-          tl.to(heartOrSpan, {
-            duration: 0.6,
-            scale: 1.3,
-            repeat: 3,
-            yoyo: true,
-            ease: "power1.inOut",
-          });
-        }
 
         tl.to(
           specialLine,
           {
-            duration: 0.7,
-            scale: 0.9,
+            duration: 0.6,
+            scale: 0.92,
             opacity: 0,
             y: -20,
             ease: "power2.in",
           },
-          "+=3.5"
+          "+=2.4"
         );
       }
 
       // Hide header
-      tl.to(header, { duration: 0.5, opacity: 0, y: -20 }, "-=0.4");
+      tl.to(header, { duration: 0.4, opacity: 0, y: -15 }, "-=0.3");
 
-      // Big letters display
+      // Big letters display (e.g. "24")
       if (bigLetters.length) {
         tl.fromTo(
           bigLetters,
-          { scale: 2.5, opacity: 0, rotation: 12 },
-          { scale: 1, opacity: 1, rotation: 0, duration: 0.8, ease: "expo.out", stagger: 0.15 }
+          { scale: 2.2, opacity: 0, rotation: 10 },
+          { scale: 1, opacity: 1, rotation: 0, duration: 0.7, ease: "expo.out", stagger: 0.12 }
         ).to(
           bigLetters,
           {
-            duration: 0.7,
-            scale: 2.5,
+            duration: 0.6,
+            scale: 2.2,
             opacity: 0,
-            rotation: -12,
+            rotation: -10,
             ease: "expo.in",
-            stagger: 0.1,
+            stagger: 0.08,
           },
-          "+=1.8"
+          "+=1.4"
         );
+      }
+
+      // Label at end of poem
+      tl.addLabel("afterPoem");
+
+      // Skip button functionality
+      if (skipBtn) {
+        skipBtn.onclick = (e) => {
+          e.stopPropagation();
+          // Fade out currently visible poem elements quickly and seek
+          gsap.to(el.querySelectorAll(".idea-line, .ideas-header, .idea-big-letters"), {
+            duration: 0.2,
+            opacity: 0,
+            onComplete: () => {
+              tl.seek("afterPoem");
+              tl.play();
+            },
+          });
+        };
       }
     },
 
     exit(tl, el) {
-      tl.to(el, { duration: 0.4, opacity: 0 });
+      tl.to(el, {
+        duration: 0.4,
+        opacity: 0,
+        onComplete: () => {
+          el.style.pointerEvents = "none";
+        },
+      });
     },
   };
 })();
