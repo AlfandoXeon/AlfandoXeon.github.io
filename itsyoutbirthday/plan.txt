@@ -1,0 +1,51 @@
+kata kata dan flow web nanti akan menampilkan (
+
+
+Awal
+1. Sekonyong-Konyong Ulang Tahun Hari ini
+2. ⁠Tanggal 7 hari ulang tahunmu. Wah, angka 7! Nomor punggung Cristiano Ronaldo, sekaligus nomor favoritku. Semoga angka 7 ini membawa banyak keberuntungan, kebahagiaan, dan hal-hal indah untukmu. ❤️
+3. ⁠seperti merapalkan doa pelan-pelan
+Aku Glorius Paskan Danu mulai menulis kalimat manis untuk mu xixi
+Selamat atas kelahiran yang terus berulang dua pulu empat kali, cintaa!!!
+1. Melalui hadiah kecil ini aku titipkan yang manis-manis dan sederhana 
+Semoga aku terus menulis kata-kata setiap tanggal ulang tahun mu tiba
+
+Kamu Dirayakan Olehku
+
+Aku ingin merayakanmu
+
+tidak hanya pada setiap purnamamu
+
+aku ingin merayakanmu
+
+pada setiap detik, menit, hari yang sudah berhasil kau lalui
+
+aku ingin merayakanmu
+
+pada apa yang semampu kurayakan
+
+aku ingin merayakanmu
+
+sampai kau mengerti, ternyata ada seseorang yang sangat
+
+bersuka cita
+
+atas adanya dirimu
+
+dan itu aku
+
+
+)
+
+
+
+saya mau sedikit merombak aplikasi web ulang tahun ini, menjadi bahasa indonesia, dan dengan semua elemen di atas situ..
+nanti tambahkan galery juga ya. semua foto foto nya saya letakan di / img..
+
+serta fix semua bug yang ada di sini
+buat lebih bagus dari ini
+apakah anda mengerti?
+
+
+buatkan dengan sangat bagus, dalam bahasa indonesia saja kartu ucapannya, seperti yang aku tulis diatas
+oiya, jangan lupa masukan semua foto yang ada di /img yaa
